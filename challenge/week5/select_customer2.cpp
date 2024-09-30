@@ -32,12 +32,10 @@ int main() {
     int select;
     bool flag = true;  // flag 선언 및 초기값 설정
 
-    cout << "아래 중 선택하세요" << endl;
-    cout << "1. 가장 나이가 많은 사람 출력" << endl;
-    cout << "2. 가장 나이가 적은 사람 출력" << endl;
-    cout << "3. 종료" << endl;
-
     while (flag) {  // flag가 true일 때 루프 실행
+        cout << "1. 가장 나이가 많은 사람 출력" << endl;
+        cout << "2. 가장 나이가 적은 사람 출력" << endl;
+        cout << "3. 종료" << endl;
         cin >> select;
         switch (select) {
             case 1:
