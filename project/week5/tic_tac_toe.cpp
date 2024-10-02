@@ -60,26 +60,26 @@ int main(){
 
         // 6-1. 빙고 시 승자 출력 후 종료(가로,세로)
         
-        bool winnerFound = false; // 승자 확인 변수
+        bool flag = false; // 승자 확인 변수
         for (int i = 0; i < numCell; i++) {
             if (board[i][0] == currentUser && board[i][1] == currentUser && board[i][2] == currentUser) {
-                winnerFound = true;
+                flag = true;
             }
             if (board[0][i] == currentUser && board[1][i] == currentUser && board[2][i] == currentUser) {
-                winnerFound = true;
+                flag = true;
             }
         }
 
         // 6-2. 빙고 시 승자 출력 후 종료(대각선)
         if (board[0][0] == currentUser && board[1][1] == currentUser && board[2][2] == currentUser) {
-            winnerFound = true;
+            flag = true;
         }
         if (board[0][2] == currentUser && board[1][1] == currentUser && board[2][0] == currentUser) {
-            winnerFound = true;
+            flag = true;
         }
 
         // 6-3. 빙고 시 승자 출력 후 종료(승자 출력 후 종료)
-        if (winnerFound) {
+        if (flag) {
             cout << currentUser << "가 승리했습니다!" << endl;
             break;
         }
