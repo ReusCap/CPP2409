@@ -4,11 +4,11 @@ using namespace std;
 int main(){
     const int numCell =3;
     char board[numCell][numCell]{};
-    int x,y; // 사용자에게 입력받는 행,열 좌표를 저장할 변수
+    int x,y; // 사용자에게 입력받는 행,열 좌표를 저장할 변수 x,y
 
     // 보드판 초기화
-    for (x=0; x<numCell; x++){
-        for (y=0; y<numCell; y++){
+    for (x = 0; x < numCell; x++){
+        for (y=0; y < numCell; y++){
             board[x][y]= ' ';
         }
     }
@@ -32,7 +32,7 @@ int main(){
         cin >> x >> y;
 
         // 3. 입력받은 좌표의 유효성 체크
-        if (x>=numCell || y>= numCell){
+        if (x >= numCell || y >= numCell){
             cout << x << ", " << y << ":";
             cout << " x와 y 둘 중 하나가 칸을 벗어납니다."<< endl;
             continue;
@@ -47,10 +47,10 @@ int main(){
         // 5. 현재 보드 판 출력
         for(int i = 0; i< numCell; i++){
             cout << "---|---|---" << endl;
-            for (int j = 0; j< numCell; j++){
+            for (int j = 0; j < numCell; j++){
                 cout << board[i][j];
                 if (j == numCell-1){    // 판의 제일 오른쪽에는 "  |"가 없어서 2가 만나면 탈출
-                    break;
+                    break;  
                 }
                 cout << "  |";
             }
@@ -75,7 +75,7 @@ int main(){
             flag = true;
         }
         if (board[0][2] == currentUser && board[1][1] == currentUser && board[2][0] == currentUser) {
-            flag = true;
+            flag = true; 
         }
 
         // 6-3. 빙고 시 승자 출력 후 종료(승자 출력 후 종료)
@@ -89,7 +89,7 @@ int main(){
             cout<< "무승부입니다.";
             break;
         }
-
+        
         k++;
     }
     return 0;
