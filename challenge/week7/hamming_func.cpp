@@ -36,5 +36,5 @@ int main(){
     cout <<"해밍 거리는 " << count << endl;
     
 
-
+    return 0;
 }
