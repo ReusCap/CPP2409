@@ -12,7 +12,7 @@ int main(){
     cout << "캔디의 가격: ";
     cin >> candy;
     cout << "최대로 살 수 있는 캔디 = "<< money/candy << endl;
-    cout << "캔디 구입 후 남은 돈 = "<< money - (money/candy)*candy << endl;
+    cout << "캔디 구입 후 남은 돈 = "<< money % candy << endl;
 
     return 0;
 }
