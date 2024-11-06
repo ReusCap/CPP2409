@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "user.h"
+#include <vector>
 using namespace std;
 
 const int mapX = 5;
@@ -8,18 +9,18 @@ const int mapY = 5;
 
 // 사용자 정의 함수
 bool checkXY(int user_x, int mapX, int user_y, int mapY);
-void displayMap(int map[][mapX], int user_x, int user_y);
-bool checkGoal(int map[][mapX], int user_x, int user_y);
+void displayMap(const vector<vector<int>>& map, int user_x, int user_y);
+bool checkGoal(const vector<vector<int>>& map, int user_x, int user_y);
 // HP 0인지 확인 함수, HP출력 함수, HP변화 함수, 아이템/적/포션 메시지 출력 함수
 bool CheckUser(User user);
 void HP_print(User user);
-int HP_change(User &user, int map[][mapX], int user_x, int user_y);
-void checkState (int map[][mapX], int user_x , int user_y );
+int HP_change(User &user, const vector<vector<int>>& map, int user_x, int user_y);
+void checkState (const vector<vector<int>>& map, int user_x , int user_y );
 
 // 메인  함수
 int main() {
 	// 0은 빈 공간, 1은 아이템, 2는 적, 3은 포션, 4는 목적지
-	int map[mapY][mapX] = { {0, 1, 2, 0, 4},
+	vector<vector<int>> map{ {0, 1, 2, 0, 4},
 							{1, 0, 0, 2, 0},
 							{0, 0, 0, 0, 0},
 							{0, 2, 3, 0, 0},
@@ -161,7 +162,7 @@ void HP_print(User user){
 // 좌표값에 따라 switch문으로 case별로 체력떨어트리고 HP값을 return한다.
 // 여기서 IncreaseHP, DecreaseHP 멤버 함수 사용
 // 여기서는 hp값을 변경하니까 객체의 참조자가 매개변수로 전달되어야 한다.
-int HP_change(User &user, int map[][mapX], int user_x, int user_y){
+int HP_change(User &user, const vector<vector<int>> &map, int user_x, int user_y){
 	int posState = map[user_y][user_x];
 	switch (posState){
 		case 0:
@@ -185,7 +186,7 @@ int HP_change(User &user, int map[][mapX], int user_x, int user_y){
 }
 
 // 아이템, 적, 포션 만났을 때 메시지 출력 함수
-void checkState (int map[][mapX], int user_x , int user_y ){
+void checkState (const vector<vector<int>> &map, int user_x , int user_y ){
 	int posState = map[user_y][user_x];
 	switch (posState){
 		case 0:
@@ -205,7 +206,7 @@ void checkState (int map[][mapX], int user_x , int user_y ){
 }
 
 // 지도와 사용자 위치 출력하는 함수
-void displayMap(int map[][mapX], int user_x, int user_y) {
+void displayMap(const vector<vector<int>> &map, int user_x, int user_y) {
 	for (int i = 0; i < mapY; i++) {
 		for (int j = 0; j < mapX; j++) {
 			if (i == user_y && j == user_x) {
@@ -247,7 +248,7 @@ bool checkXY(int user_x, int mapX, int user_y, int mapY) {
 }
 
 // 유저의 위치가 목적지인지 체크하는 함수
-bool checkGoal(int map[][mapX], int user_x, int user_y) {
+bool checkGoal(const vector<vector<int>> &map, int user_x, int user_y) {
 	// 목적지 도착하면
 	if (map[user_y][user_x] == 4) {
 		return true;
