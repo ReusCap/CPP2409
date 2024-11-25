@@ -1,40 +1,50 @@
 #include <iostream>
 using namespace std;
 
-class User{
+// User 클래스는 순수 가상 함수로 구성된 인터페이스
+class User {
+public:
+    virtual void IncreaseHP(int inc_hp) = 0;
+    virtual void DecreaseHP(int dec_hp) = 0;
+    virtual void IncItem() = 0;
+    virtual int GetHP()= 0;
+    virtual void DoAttack() = 0;
+    virtual ~User() {}  
+    friend ostream& operator<<(ostream& os, const User& user) {
+        return user.Print(os);
+    }
+
+protected:
+    virtual ostream& Print(ostream& os) const = 0;
+};
+
+
+// Magician 클래스 선언 (구현은 user.cpp에서)
+class Magician : public User {
 private:
-	int hp;
-	// 아이템 먹은 횟수 저장 변수
-	int itemCnt;
+    int hp;
+    int itemCnt;
 public:
-	// user_x와 user_y를 class의 public안에 넣는다.
-	int user_x;
-	int user_y;
-
-	User();
-    void IncreaseHP(int inc_hp);
-	void DecreaseHP(int dec_hp);
-	void IncItem();
-	int GetHP();
-	friend ostream& operator<<(ostream& os, const User& user){
-    	os <<"현재 HP는 " << user.hp <<"이고, 먹은 아이템은 총 " << user.itemCnt << "개 입니다." << endl;
-		return os;
-	}
-	virtual void DoAttack()=0;
+    Magician();
+    void IncreaseHP(int inc_hp) override;
+    void DecreaseHP(int dec_hp) override;
+    void IncItem() override;
+    int GetHP() override;
+    void DoAttack() override;
+    ostream& Print(ostream& os) const override;
 };
 
-class Magician: public User{
+// Warrior 클래스 선언 (구현은 user.cpp에서)
+class Warrior : public User {
+private:
+    int hp;
+    int itemCnt;
 public:
-	Magician(){}
-	void DoAttack() override{
-		cout <<"마법 사용"<<endl;
-	}
-};
-
-class Warrior: public User{
-public:
-	Warrior(){}
-	void DoAttack() override{
-		cout <<"베기 사용"<<endl;
-	}
+    Warrior();
+    void IncreaseHP(int inc_hp) override;
+    void DecreaseHP(int dec_hp) override;
+    void IncItem() override;
+    int GetHP() override;
+    void DoAttack() override;
+    ostream& Print(ostream& os) const override;
 };
